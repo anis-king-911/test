@@ -1,18 +1,27 @@
-import { sleep } from './log.js';
-const arr = ['one', 'two', 'thr', 'for', 'fiv'];
+const firebaseConfig = {
+  apiKey: "AIzaSyDxJdw2Or76OzVUaAaGSIQ036veT7AlZ00",
+  authDomain: "manga4ever-vercel.firebaseapp.com",
+  databaseURL: "https://manga4ever-vercel-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "manga4ever-vercel",
+  storageBucket: "manga4ever-vercel.appspot.com",
+  messagingSenderId: "816513080903",
+  appId: "1:816513080903:web:750f10d34d80558ce71b62"
+};
 
-async function wite() {
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
-  for (const iterator of arr) {
-    await sleep(2000);
-    console.log(iterator);
-  }
+const MainList = 'MainList';
 
-  arr.map(async (item) => {
-    await sleep(2000)
-    console.log(item);
-  })
-  
+async function loadData() {
+  const databaseRef = database.ref(MainList);
+  const databaseGet = await databaseRef.get();
+  const databaseVal = await databaseGet.val();
+
+  const snapshot = Object.values(databaseVal);
+  const snaplimit = snapshot.splice(0, 10);
+
+  console.log(snaplimit);
 }
 
-window.addEventListener('DOMContentLoaded', () => wite());
+window.addEventListener('DOMContentLoaded', () => loadData());
