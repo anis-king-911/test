@@ -24,4 +24,4 @@ async function loadData() {
   console.log(snaplimit);
 }
 
-window.addEventListener('DOMContentLoaded', () => loadData());
+//window.addEventListener('DOMContentLoaded', () => loadData());

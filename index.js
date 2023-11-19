@@ -72,10 +72,15 @@ const localMain = {
 
 app.use("/assets", express.static(path.resolve(__dirname, "views", "assets")));
 
+const ViewsRoutes = require('./routes/views.js');
+app.use('/', ViewsRoutes);
+
+/*
 app.get('/', async (req, res) => {
   res.sendFile(path.join(__dirname, './views/index.html'));
   //res.send(localMain);
 });
+*/
 
 //app.get('/test', (req, res) => {
 //  res.send(data);
